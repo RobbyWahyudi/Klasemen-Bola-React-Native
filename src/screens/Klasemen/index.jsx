@@ -6,7 +6,6 @@ import {
   View,
   TouchableOpacity,
   Alert,
-  Image,
 } from 'react-native';
 
 const Klasemen = () => {
@@ -15,11 +14,11 @@ const Klasemen = () => {
   const ambilData = async () => {
     try {
       const response = await fetch(
-        'https://api-football-standings.azharimm.dev/leagues',
+        'https://doa-doa-api-ahmadramadhan.fly.dev/api',
       ); // Ambil Data
       const json = await response.json(); // Ubah data ke JSON
       // console.log(json);
-      return setData(json.data);
+      return setData(json);
     } catch (error) {
       console.log(error); // menampilkan error
       Alert.alert('info', 'koneksi bermasalah');
@@ -38,7 +37,7 @@ const Klasemen = () => {
         renderItem={({item}) => (
           <TouchableOpacity
             style={{
-              backgroundColor: '#FBC112',
+              backgroundColor: 'salmon',
               marginBottom: 10,
               padding: 10,
               borderRadius: 5,
@@ -46,12 +45,6 @@ const Klasemen = () => {
               alignItems: 'center',
             }}
             key={item.id}>
-            <Image
-              style={{width: 50, height: 50}}
-              source={{
-                uri: `${item.logos.light}`,
-              }}
-            />
             <Text
               style={{
                 color: 'black',
@@ -59,7 +52,7 @@ const Klasemen = () => {
                 fontWeight: 'bold',
                 paddingHorizontal: 10,
               }}>
-              {item.name}
+              {item.doa}
             </Text>
           </TouchableOpacity>
         )}

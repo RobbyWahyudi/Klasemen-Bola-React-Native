@@ -1,49 +1,26 @@
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
-import {Appbar, Card, Text, TextInput, Searchbar} from 'react-native-paper';
+import {Appbar, Card, Text, Searchbar} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Beranda = () => {
   return (
-    <View style={{backgroundColor: 'white'}}>
-      <Appbar.Header
-        style={{
-          height: 190,
-          backgroundColor: '#9B222F',
-          flexDirection: 'column',
-          paddingHorizontal: 25,
-          paddingTop: 30,
-        }}>
-        <View
-          style={{
-            width: '100%',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}>
-          <MaterialCommunityIcons name="menu" size={32} color="white" />
+    <ScrollView style={{backgroundColor: 'white'}}>
+      <Appbar.Header style={styles.appBar}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Halo, Robby Wahyudi</Text>
+
           <MaterialCommunityIcons name="bell-outline" size={30} color="white" />
         </View>
-        <Text
-          style={{
-            textAlign: 'left',
-            width: '100%',
-            color: 'white',
-            fontSize: 30,
-            fontWeight: 'bold',
-            marginBottom: 10,
-          }}>
-          Halo, Robby Wahyudi
-        </Text>
+
         <Searchbar
           inputStyle={{padding: 0, marginTop: -6}}
-          placeholder="Search"
-          style={{
-            borderRadius: 10,
-            height: 45,
-          }}
+          placeholderTextColor={'grey'}
+          placeholder="cari berita tentang liga 1"
+          style={{borderRadius: 10, height: 45}}
         />
       </Appbar.Header>
+
       <Text
         style={{
           color: '#09051C',
@@ -55,6 +32,7 @@ const Beranda = () => {
         }}>
         Pertandingan Liga 1
       </Text>
+
       <Card
         style={{
           backgroundColor: '#09051C',
@@ -62,23 +40,93 @@ const Beranda = () => {
           marginBottom: 30,
         }}>
         <Card.Content>
-          <Text variant="titleLarge">Card title</Text>
-          <Text variant="bodyMedium">Card content</Text>
+          <View
+            style={{
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: 2,
+              marginBottom: 15,
+            }}>
+            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+              Madura United
+            </Text>
+            <Text style={{color: 'white', fontSize: 25, fontWeight: 'bold'}}>
+              VS
+            </Text>
+            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+              Persib
+            </Text>
+          </View>
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+            <Text style={{color: 'grey'}}>02/08/24</Text>
+            <Text style={{color: 'grey'}}>19.00 WIB</Text>
+          </View>
         </Card.Content>
       </Card>
-      <Card style={{backgroundColor: '#FBC112', marginHorizontal: 25}}>
+      <Card
+        style={{backgroundColor: '#FBC112', marginHorizontal: 25, height: 190}}>
         <Card.Content>
-          <Text variant="titleLarge">Card title</Text>
-          <Text variant="bodyMedium">Card content</Text>
+          <Text style={{fontWeight: 'bold', fontSize: 30, marginTop: 10}}>
+            Dapatkan informasi
+          </Text>
+          <Text variant="titleLarge">tentang BRI Liga 1</Text>
+          <Text variant="titleLarge">Indonesia</Text>
+          <Text>Klik di sini</Text>
         </Card.Content>
       </Card>
-      <Text style={{fontWeight: 'bold', paddingLeft: 25, fontSize: 18}}>
+      <Text
+        style={{
+          fontWeight: 'bold',
+          paddingLeft: 25,
+          fontSize: 18,
+          marginTop: 20,
+          marginBottom: 10,
+        }}>
         Berita
       </Text>
-    </View>
+      <Card
+        style={{
+          backgroundColor: '#FBC112',
+          marginHorizontal: 25,
+          height: 190,
+          marginBottom: 30,
+        }}>
+        <Card.Content>
+          <Text style={{fontWeight: 'bold', fontSize: 30, marginTop: 10}}>
+            Dapatkan informasi
+          </Text>
+          <Text variant="titleLarge">tentang BRI Liga 1</Text>
+          <Text variant="titleLarge">Indonesia</Text>
+          <Text>Klik di sini</Text>
+        </Card.Content>
+      </Card>
+    </ScrollView>
   );
 };
 
 export default Beranda;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  appBar: {
+    height: 160,
+    backgroundColor: '#9B222F',
+    flexDirection: 'column',
+    paddingHorizontal: 25,
+    paddingTop: 30,
+  },
+
+  header: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 25,
+  },
+
+  headerTitle: {
+    textAlign: 'left',
+    color: 'white',
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
+});
