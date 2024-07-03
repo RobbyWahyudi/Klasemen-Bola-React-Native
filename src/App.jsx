@@ -1,9 +1,9 @@
-import {View, Text} from 'react-native';
+import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Feather from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+// Memanggil Halaman
 import Beranda from './screens/Beranda';
 import Berita from './screens/Berita';
 import Klasemen from './screens/Klasemen';
@@ -18,7 +18,6 @@ export default function App() {
         screenOptions={({route}) => ({
           tabBarStyle: {
             height: 60,
-            // paddingBottom: 6,
             padding: 0,
           },
           tabBarLabelStyle: {
@@ -56,6 +55,7 @@ export default function App() {
           },
         })}>
         <Tabs.Screen name="Beranda" component={Beranda} />
+
         <Tabs.Screen
           name="Klasemen"
           component={Klasemen}
@@ -63,6 +63,7 @@ export default function App() {
             headerShown: true,
           }}
         />
+
         <Tabs.Screen
           name="Berita"
           component={Berita}
