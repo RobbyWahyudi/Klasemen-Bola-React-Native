@@ -1,27 +1,27 @@
 import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
-  FlatList,
   Text,
   View,
   TouchableOpacity,
   Alert,
+  Image,
+  ScrollView,
 } from 'react-native';
 
 const Klasemen = () => {
-  const [data, setData] = useState([]); // state atau penampung data
+  const [dataLiga, setDataLiga] = useState([]); // state atau penampung data
 
   const ambilData = async () => {
     try {
       const response = await fetch(
-        'https://doa-doa-api-ahmadramadhan.fly.dev/api',
+        'https://api-football-standings.azharimm.dev/leagues',
       ); // Ambil Data
       const json = await response.json(); // Ubah data ke JSON
       // console.log(json);
-      return setData(json);
+      return setDataLiga(json.data);
     } catch (error) {
-      console.log(error); // menampilkan error
-      Alert.alert('info', 'koneksi bermasalah');
+      Alert.alert('info', 'koneksi bermasalah'); // menampilkan error
     }
   };
 
@@ -30,34 +30,37 @@ const Klasemen = () => {
   }, []);
 
   return (
-    <View style={{padding: 10}}>
-      <FlatList
-        data={data}
-        keyExtractor={({id}) => id}
-        renderItem={({item}) => (
-          <TouchableOpacity
-            style={{
-              backgroundColor: 'salmon',
-              marginBottom: 10,
-              padding: 10,
-              borderRadius: 5,
-              flexDirection: 'row',
-              alignItems: 'center',
-            }}
-            key={item.id}>
-            <Text
+    <ScrollView
+      style={{
+        backgroundColor: 'white',
+      }}>
+      {dataLiga &&
+        dataLiga.map((item, i) => {
+          return (
+            <View
               style={{
-                color: 'black',
-                fontSize: 20,
-                fontWeight: 'bold',
-                paddingHorizontal: 10,
-              }}>
-              {item.doa}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
-    </View>
+                borderBottomWidth: 1,
+                borderColor: '#9B222F',
+                padding: 10,
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 10,
+              }}
+              key={i}>
+              <Image
+                style={{width: 40, height: 40}}
+                source={{
+                  uri: item.logos.light,
+                }}
+              />
+              <Text
+                style={{color: '#09051C', fontSize: 16, fontWeight: 'bold'}}>
+                {item.name}
+              </Text>
+            </View>
+          );
+        })}
+    </ScrollView>
   );
 };
 

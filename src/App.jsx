@@ -61,6 +61,17 @@ export default function App() {
           component={Klasemen}
           options={{
             headerShown: true,
+            headerTitleStyle: {
+              color: '#09051C',
+              fontWeight: 'bold',
+            },
+            headerTitleContainerStyle: {
+              alignItems: 'center',
+              width: '100%',
+            },
+            headerStyle: {
+              borderBottomWidth: 1,
+            },
           }}
         />
 
@@ -69,6 +80,17 @@ export default function App() {
           component={Berita}
           options={{
             headerShown: true,
+            headerTitleStyle: {
+              color: '#09051C',
+              fontWeight: 'bold',
+            },
+            headerTitleContainerStyle: {
+              alignItems: 'center',
+              width: '100%',
+            },
+            headerStyle: {
+              borderBottomWidth: 1,
+            },
           }}
         />
       </Tabs.Navigator>

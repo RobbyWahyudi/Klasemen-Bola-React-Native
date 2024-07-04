@@ -5,7 +5,8 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Beranda = () => {
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView style={{}}>
+      {/* Bagian Header */}
       <Appbar.Header style={styles.appBar}>
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Halo, Robby Wahyudi</Text>
@@ -38,6 +39,7 @@ const Beranda = () => {
           backgroundColor: '#09051C',
           marginHorizontal: 25,
           marginBottom: 30,
+          width: 280,
         }}>
         <Card.Content>
           <View
@@ -47,13 +49,25 @@ const Beranda = () => {
               gap: 2,
               marginBottom: 15,
             }}>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 20,
+                fontWeight: 'bold',
+                letterSpacing: 1,
+              }}>
               Madura United
             </Text>
-            <Text style={{color: 'white', fontSize: 25, fontWeight: 'bold'}}>
+            <Text style={{color: '#9B222F', fontSize: 25, fontWeight: 'bold'}}>
               VS
             </Text>
-            <Text style={{color: 'white', fontSize: 20, fontWeight: 'bold'}}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 20,
+                fontWeight: 'bold',
+                letterSpacing: 1,
+              }}>
               Persib
             </Text>
           </View>
@@ -63,15 +77,12 @@ const Beranda = () => {
           </View>
         </Card.Content>
       </Card>
-      <Card
-        style={{backgroundColor: '#FBC112', marginHorizontal: 25, height: 190}}>
+      <Card style={{backgroundColor: 'white', marginHorizontal: 25}}>
         <Card.Content>
-          <Text style={{fontWeight: 'bold', fontSize: 30, marginTop: 10}}>
-            Dapatkan informasi
+          <Text style={{fontWeight: 'bold', fontSize: 23}}>
+            Dapatkan informasi tentang BRI Liga 1 Indonesia
           </Text>
-          <Text variant="titleLarge">tentang BRI Liga 1</Text>
-          <Text variant="titleLarge">Indonesia</Text>
-          <Text>Klik di sini</Text>
+          <Text style={{marginTop: 10, color: 'grey'}}>Klik di sini</Text>
         </Card.Content>
       </Card>
       <Text
@@ -86,7 +97,7 @@ const Beranda = () => {
       </Text>
       <Card
         style={{
-          backgroundColor: '#FBC112',
+          backgroundColor: 'white',
           marginHorizontal: 25,
           height: 190,
           marginBottom: 30,
