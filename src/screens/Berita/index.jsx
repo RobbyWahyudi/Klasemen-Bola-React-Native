@@ -1,14 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Card} from 'react-native-paper';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, Text, View, Alert, Image, ScrollView} from 'react-native';
 
 const Berita = () => {
   const [dataBerita, setDataBerita] = useState([]); // state atau penampung data
@@ -31,56 +23,37 @@ const Berita = () => {
   }, []);
 
   return (
-    <ScrollView
-      style={{
-        backgroundColor: 'white',
-      }}>
-      <View style={{}}>
+    <ScrollView>
+      <View style={{padding: 15, gap: 12}}>
         {dataBerita &&
           dataBerita.map((item, i) => {
             return (
-              // <View
-              //   style={{
-              //     borderBottomWidth: 1,
-              //     borderColor: '#9B222F',
-              //     flexDirection: 'row',
-              //     alignItems: 'center',
-              //     gap: 10,
-              //     width: 300,
-              //   }}
-              //   key={i}>
-              //   <Image
-              //     style={{width: 80, height: 50}}
-              //     source={{
-              //       uri: item.thumbnail,
-              //     }}
-              //   />
-              //   <Text
-              //     style={{
-              //       color: '#09051C',
-              //       fontSize: 16,
-              //       fontWeight: 'bold',
-              //       flexWrap: 'wrap',
-              //     }}>
-              //     {item.title}
-              //   </Text>
-              // </View>
-
               <Card
                 style={{
-                  backgroundColor: 'white',
-                  marginHorizontal: 25,
-                  marginVertical: 10,
+                  borderRadius: 0,
                 }}
                 key={i}>
-                <Card.Content>
+                <Card.Content
+                  style={{
+                    flexDirection: 'row-reverse',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
                   <Image
-                    style={{width: 80, height: 50}}
+                    style={{width: 90, height: 80, borderRadius: 10}}
                     source={{
                       uri: item.thumbnail,
                     }}
                   />
-                  <Text style={{marginTop: 10, color: 'grey'}}>
+
+                  <Text
+                    style={{
+                      color: '#09051C',
+                      flexWrap: 'wrap',
+                      width: '70%',
+                      fontSize: 16,
+                      fontWeight: 'bold',
+                    }}>
                     {item.title}
                   </Text>
                 </Card.Content>
