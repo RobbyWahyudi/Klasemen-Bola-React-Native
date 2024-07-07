@@ -11,7 +11,6 @@ const Berita = () => {
         'https://ligaindonesia-api.vercel.app/api/v1/news',
       ); // Ambil Data
       const json = await response.json(); // Ubah data ke JSON
-      // console.log(json);
       return setDataBerita(json.data);
     } catch (error) {
       Alert.alert('info', 'koneksi bermasalah'); // menampilkan error
