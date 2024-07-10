@@ -1,4 +1,11 @@
-import {StyleSheet, View, ScrollView, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Image,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Appbar, Card, Text, Searchbar} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,9 +15,10 @@ const Beranda = ({navigation}) => {
 
   const ambilData = async () => {
     try {
+      // Ambil Data
       const response = await fetch(
         'https://ligaindonesia-api.vercel.app/api/v1/news',
-      ); // Ambil Data
+      );
       const json = await response.json(); // Ubah data ke JSON
       return setDataBerita(json.data[0]);
     } catch (error) {
@@ -21,6 +29,10 @@ const Beranda = ({navigation}) => {
   useEffect(() => {
     ambilData();
   }, []);
+
+  const thumbnailBerita = dataBerita.thumbnail;
+
+  const DataPertandingan = [{id: 1}, {id: 2}];
 
   return (
     <ScrollView>
@@ -41,67 +53,73 @@ const Beranda = ({navigation}) => {
       </Appbar.Header>
 
       {/* Bagian Konten */}
-      <View style={{paddingHorizontal: 25, paddingVertical: 20}}>
-        <Text style={styles.judulKonten}>Pertandingan Liga 1</Text>
+      <View style={{paddingVertical: 20}}>
+        <Text style={[styles.judulKonten, styles.judulPertandingan]}>
+          Pertandingan Liga 1
+        </Text>
+        <ScrollView horizontal={true} style={{paddingLeft: 25}}>
+          {DataPertandingan &&
+            DataPertandingan.map((item, i) => {
+              return (
+                <Card style={styles.cardPertandingan} key={i}>
+                  <Card.Content>
+                    <View style={styles.kontenPertandingan}>
+                      <Text style={styles.tim}>Madura United</Text>
 
-        <Card style={styles.cardPertandingan}>
-          <Card.Content>
-            <View style={styles.kontenPertandingan}>
-              <Text style={styles.tim}>Madura United</Text>
+                      <Text
+                        style={{
+                          color: '#9B222F',
+                          fontSize: 25,
+                          fontWeight: 'bold',
+                        }}>
+                        VS
+                      </Text>
 
+                      <Text style={styles.tim}>Persib</Text>
+                    </View>
+
+                    <View style={styles.waktuPertandingan}>
+                      <Text style={{color: 'grey'}}>02/08/24</Text>
+                      <Text style={{color: 'grey'}}>19.00 WIB</Text>
+                    </View>
+                  </Card.Content>
+                </Card>
+              );
+            })}
+        </ScrollView>
+
+        <View style={{paddingHorizontal: 25}}>
+          <Card
+            style={{backgroundColor: 'white', marginBottom: 20}}
+            onPress={() => navigation.navigate('BRI Liga 1')}>
+            <Card.Content>
               <Text
-                style={{color: '#9B222F', fontSize: 25, fontWeight: 'bold'}}>
-                VS
+                style={{fontWeight: 'bold', fontSize: 23, color: '#9B222F'}}>
+                Dapatkan informasi tentang BRI Liga 1 Indonesia
               </Text>
+              <Text style={{marginTop: 15, color: 'grey'}}>Klik di sini</Text>
+            </Card.Content>
+          </Card>
 
-              <Text style={styles.tim}>Persib</Text>
-            </View>
+          <Text style={styles.judulKonten}>Berita</Text>
 
-            <View style={styles.waktuPertandingan}>
-              <Text style={{color: 'grey'}}>02/08/24</Text>
-              <Text style={{color: 'grey'}}>19.00 WIB</Text>
-            </View>
-          </Card.Content>
-        </Card>
-
-        <Card
-          style={{backgroundColor: 'white', marginBottom: 20}}
-          onPress={() => navigation.navigate('BRI Liga 1')}>
-          <Card.Content>
-            <Text style={{fontWeight: 'bold', fontSize: 23, color: '#9B222F'}}>
-              Dapatkan informasi tentang BRI Liga 1 Indonesia
-            </Text>
-            <Text style={{marginTop: 15, color: 'grey'}}>Klik di sini</Text>
-          </Card.Content>
-        </Card>
-
-        <Text style={styles.judulKonten}>Berita</Text>
-
-        <Card style={{backgroundColor: 'white'}}>
-          <Card.Content
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-            }}>
-            <Image
-              style={{width: '45%', height: 135, borderRadius: 10}}
-              source={{
-                uri: `${dataBerita.thumbnail}`,
-              }}
-            />
-
-            <Text
+          <Card style={{backgroundColor: 'white'}}>
+            <Card.Content
               style={{
-                color: '#09051C',
-                flexWrap: 'wrap',
-                width: '50%',
-                fontSize: 17,
-                fontWeight: 'bold',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
               }}>
-              {dataBerita.title}
-            </Text>
-          </Card.Content>
-        </Card>
+              <Image
+                style={styles.thumbnailBerita}
+                source={{
+                  uri: thumbnailBerita,
+                }}
+              />
+
+              <Text style={styles.judulBerita}>{dataBerita.title}</Text>
+            </Card.Content>
+          </Card>
+        </View>
       </View>
     </ScrollView>
   );
@@ -140,10 +158,15 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
+  judulPertandingan: {
+    marginLeft: 25,
+  },
+
   cardPertandingan: {
     backgroundColor: '#09051C',
     marginBottom: 30,
     width: 280,
+    marginRight: 15,
   },
 
   kontenPertandingan: {
@@ -161,4 +184,14 @@ const styles = StyleSheet.create({
   },
 
   waktuPertandingan: {flexDirection: 'row', justifyContent: 'space-between'},
+
+  thumbnailBerita: {width: '45%', height: 135, borderRadius: 10},
+
+  judulBerita: {
+    color: '#09051C',
+    flexWrap: 'wrap',
+    width: '50%',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
 });

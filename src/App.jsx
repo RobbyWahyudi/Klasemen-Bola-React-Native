@@ -20,7 +20,16 @@ export default function App() {
           component={BottomTab}
           options={{headerShown: false}}
         />
-        <Stacks.Screen name="BRI Liga 1" component={Liga1} />
+        <Stacks.Screen
+          name="BRI Liga 1"
+          component={Liga1}
+          options={{
+            headerTitleStyle: {
+              color: '#09051C',
+              fontWeight: 'bold',
+            },
+          }}
+        />
       </Stacks.Navigator>
     </NavigationContainer>
   );
