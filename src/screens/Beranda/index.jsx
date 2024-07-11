@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#09051C',
     marginBottom: 30,
     width: 280,
-    marginRight: 15,
+    marginRight: 30,
   },
 
   kontenPertandingan: {
