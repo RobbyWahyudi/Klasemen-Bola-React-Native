@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  Image,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, View, ScrollView, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {Appbar, Card, Text, Searchbar} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -30,9 +23,7 @@ const Beranda = ({navigation}) => {
     ambilData();
   }, []);
 
-  const thumbnailBerita = dataBerita.thumbnail;
-
-  const DataPertandingan = [{id: 1}, {id: 2}];
+  const DataPertandingan = [{id: 1}, {id: 2}, {id: 3}];
 
   return (
     <ScrollView>
@@ -57,35 +48,37 @@ const Beranda = ({navigation}) => {
         <Text style={[styles.judulKonten, styles.judulPertandingan]}>
           Pertandingan Liga 1
         </Text>
-        <ScrollView horizontal={true} style={{paddingLeft: 25}}>
-          {DataPertandingan &&
-            DataPertandingan.map((item, i) => {
-              return (
-                <Card style={styles.cardPertandingan} key={i}>
-                  <Card.Content>
-                    <View style={styles.kontenPertandingan}>
-                      <Text style={styles.tim}>Madura United</Text>
+        <ScrollView horizontal style={{}}>
+          <View style={{flexDirection: 'row', gap: 15, paddingHorizontal: 25}}>
+            {DataPertandingan &&
+              DataPertandingan.map((item, i) => {
+                return (
+                  <Card style={styles.cardPertandingan} key={i}>
+                    <Card.Content>
+                      <View style={styles.kontenPertandingan}>
+                        <Text style={styles.tim}>Madura United</Text>
 
-                      <Text
-                        style={{
-                          color: '#9B222F',
-                          fontSize: 25,
-                          fontWeight: 'bold',
-                        }}>
-                        VS
-                      </Text>
+                        <Text
+                          style={{
+                            color: '#9B222F',
+                            fontSize: 25,
+                            fontWeight: 'bold',
+                          }}>
+                          VS
+                        </Text>
 
-                      <Text style={styles.tim}>Persib</Text>
-                    </View>
+                        <Text style={styles.tim}>Persib</Text>
+                      </View>
 
-                    <View style={styles.waktuPertandingan}>
-                      <Text style={{color: 'grey'}}>02/08/24</Text>
-                      <Text style={{color: 'grey'}}>19.00 WIB</Text>
-                    </View>
-                  </Card.Content>
-                </Card>
-              );
-            })}
+                      <View style={styles.waktuPertandingan}>
+                        <Text style={{color: 'grey'}}>02/08/24</Text>
+                        <Text style={{color: 'grey'}}>19.00 WIB</Text>
+                      </View>
+                    </Card.Content>
+                  </Card>
+                );
+              })}
+          </View>
         </ScrollView>
 
         <View style={{paddingHorizontal: 25}}>
@@ -103,6 +96,23 @@ const Beranda = ({navigation}) => {
 
           <Text style={styles.judulKonten}>Berita</Text>
 
+          <Card style={{backgroundColor: 'white', marginBottom: 10}}>
+            <Card.Content
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}>
+              <Image
+                style={styles.thumbnailBerita}
+                source={{
+                  uri: dataBerita.thumbnail,
+                }}
+              />
+
+              <Text style={styles.judulBerita}>{dataBerita.title}</Text>
+            </Card.Content>
+          </Card>
+
           <Card style={{backgroundColor: 'white'}}>
             <Card.Content
               style={{
@@ -112,7 +122,7 @@ const Beranda = ({navigation}) => {
               <Image
                 style={styles.thumbnailBerita}
                 source={{
-                  uri: thumbnailBerita,
+                  uri: dataBerita.thumbnail,
                 }}
               />
 
@@ -166,7 +176,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#09051C',
     marginBottom: 30,
     width: 280,
-    marginRight: 30,
   },
 
   kontenPertandingan: {

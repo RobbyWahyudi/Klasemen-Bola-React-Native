@@ -1,13 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Alert,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {StyleSheet, Text, View, Alert, Image, ScrollView} from 'react-native';
 
 const Klasemen = () => {
   const [dataLiga, setDataLiga] = useState([]); // state atau penampung data
