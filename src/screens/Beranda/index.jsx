@@ -1,6 +1,14 @@
-import {StyleSheet, View, ScrollView, Image} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Image,
+  Modal,
+  Pressable,
+  Alert,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import {Appbar, Card, Text, Searchbar} from 'react-native-paper';
+import {Appbar, Card, Text, Searchbar, Divider} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Beranda = ({navigation}) => {
@@ -25,6 +33,8 @@ const Beranda = ({navigation}) => {
 
   const DataPertandingan = [{id: 1}, {id: 2}, {id: 3}];
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   return (
     <ScrollView>
       {/* Bagian Header */}
@@ -32,7 +42,12 @@ const Beranda = ({navigation}) => {
         <View style={styles.header}>
           <Text style={styles.headerTitle}>Halo, Robby Wahyudi</Text>
 
-          <MaterialCommunityIcons name="bell-outline" size={30} color="white" />
+          <MaterialCommunityIcons
+            name="bell-outline"
+            size={30}
+            color="white"
+            onPress={() => setModalVisible(true)}
+          />
         </View>
 
         <Searchbar
@@ -131,6 +146,33 @@ const Beranda = ({navigation}) => {
           </Card>
         </View>
       </View>
+
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(!modalVisible);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Notifikasi</Text>
+            <View style={{marginTop: 15, width: '100%', gap: 10}}>
+              <Text style={styles.notifikasi}>Notifikasi 1</Text>
+              <Divider />
+              <Text style={styles.notifikasi}>Notifikasi 2</Text>
+              <Divider />
+              <Text style={styles.notifikasi}>Notifikasi 3</Text>
+              <Divider />
+            </View>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setModalVisible(!modalVisible)}>
+              <Text style={styles.textStyle}>Close</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
@@ -203,4 +245,53 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 'bold',
   },
+
+  centeredView: {
+    height: '100%',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    alignItems: 'center',
+  },
+
+  modalView: {
+    width: '80%',
+    height: 400,
+    marginTop: 150,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    paddingHorizontal: 35,
+    paddingVertical: 20,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+
+  button: {
+    position: 'absolute',
+    borderRadius: 20,
+    padding: 10,
+    paddingHorizontal: 20,
+    elevation: 2,
+    backgroundColor: '#9B222F',
+    bottom: 20,
+  },
+
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+
+  modalText: {
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+  notifikasi: {fontSize: 18},
 });
